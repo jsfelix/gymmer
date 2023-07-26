@@ -1,0 +1,33 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_DEBUG=server:* tsx watch src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "build": "tsup src --out-dir build",
+    "start": "NODE_DEBUG=server:* node build/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rocketseat/eslint-config": "2.1.0",
+    "@types/node": "20.4.5",
+    "eslint": "8.45.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-prettier": "5.0.0",
+    "prettier": "3.0.0",
+    "tsup": "7.1.0",
+    "tsx": "3.12.7",
+    "typescript": "5.1.6"
+  },
+  "dependencies": {
+    "dotenv": "16.3.1",
+    "fastify": "4.20.0",
+    "zod": "3.21.4"
+  }
+}
