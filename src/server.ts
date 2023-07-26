@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import { app } from './app'
 import { env } from './config/env'
-import { logInfo } from './debug'
+import { logInfo } from './config/debug'
 
 const PORT = env.APP_PORT
 

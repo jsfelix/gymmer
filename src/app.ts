@@ -1,8 +1,33 @@
 import fastify from 'fastify'
-import { PrismaClient } from '@prisma/client'
+import { z } from 'zod'
+import { prismaClient } from './config/database'
+import {
+  ZodTypeProvider,
+  serializerCompiler,
+  validatorCompiler,
+} from 'fastify-type-provider-zod'
 
-export const app = fastify({ logger: true })
+export const app = fastify({ logger: true }).withTypeProvider<ZodTypeProvider>()
 
-const prisma = new PrismaClient()
+app.setValidatorCompiler(validatorCompiler)
+app.setSerializerCompiler(serializerCompiler)
 
-prisma.user.findMany().then((user) => console.log(user))
+app.post(
+  '/users',
+  {
+    schema: {
+      body: z.object({
+        name: z.string(),
+        email: z.string().email(),
+        password: z.string().min(6),
+      }),
+    },
+  },
+  async (request, reply) => {
+    const { name, email, password } = request.body
+    await prismaClient.user.create({
+      data: { email, name, passwordHash: password },
+    })
+    return reply.status(201).send()
+  },
+)

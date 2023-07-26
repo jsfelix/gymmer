@@ -1,4 +1,4 @@
-import { logError } from '@/debug'
+import { logError } from '@/config/debug'
 import { z } from 'zod'
 
 const envSchema = z.object({

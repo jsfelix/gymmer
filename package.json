@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_DEBUG=server:* tsx watch src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint src --ext .ts",
+    "lint": "npx tsc --noemit && npx eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
     "build": "tsup src --out-dir build",
     "start": "NODE_DEBUG=server:* node build/server.js"
@@ -30,6 +30,7 @@
     "@prisma/client": "5.0.0",
     "dotenv": "16.3.1",
     "fastify": "4.20.0",
+    "fastify-type-provider-zod": "1.1.9",
     "zod": "3.21.4"
   }
 }
