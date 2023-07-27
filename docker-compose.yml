@@ -1,15 +1,12 @@
 version: '3'
 
 services:
-  gymmer-db:
+  db:
     image: bitnami/postgresql
-    container_name: gymmer_database
     restart: always
     ports:
       - 5432:5432
     environment:
-      - POSTGRESQL_USERNAME=gymmer
-      - POSTGRESQL_PASSWORD=gymmer
-      - POSGTRESQL_DATABASE=gymmer
-    volumes:
-      - ".data/postgresql:/bitnami/postgresql"
+      POSTGRESQL_USERNAME: "${DATABASE_USER}"
+      POSTGRESQL_PASSWORD: "${DATABASE_PASSWORD}"
+      POSTGRESQL_DATABASE: "${DATABASE_NAME}"
